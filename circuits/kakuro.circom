@@ -1,9 +1,16 @@
 pragma circom 2.0.3;
 
+include "circomlib/poseidon.circom";
+include "circomlib/comparators.circom";
+// include "https://github.com/0xPARC/circom-secp256k1/blob/master/circuits/bigint.circom";
+
+
+
 template Kakuro () {
     signal input a[3][4];
     signal input sol[3][4];
 
+    component lessThan[3][4];
 
     signal output out;
 
@@ -35,6 +42,9 @@ template Kakuro () {
                     while(in[i][k] == 0) {
                         if(k < 4){
                             if(inn[i][k] != 0) {
+                                // test entry 1 and 9
+                                assert(inn[i][k] >= 1);
+                                assert(inn[i][k] <= 9);
                                 current += inn[i][k];
                             }
                         }
@@ -65,6 +75,9 @@ template Kakuro () {
                     while(in[l][j] == 0) {
                         if(l < 3){
                             if(inn[l][j] != 0) {
+                                // test entry between 1 and 9
+                                assert(inn[l][j] >= 1);
+                                assert(inn[l][j] <= 9);
                                 current_y += inn[l][j];
                             }
                         }
