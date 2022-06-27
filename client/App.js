@@ -1,6 +1,6 @@
 import { DefaultTheme, Provider as PaperProvider }  from 'react-native-paper';
-import { StyleSheet, Text, View } from 'react-native';
 import Main from './src/main';
+import { GlobalContextProvider } from './src/context'
 
 
 const theme = {
@@ -15,7 +15,9 @@ const theme = {
 export default function App() {
   return (
     <PaperProvider>
-      <Main />
+      <GlobalContextProvider>
+        <Main />
+      </GlobalContextProvider>
     </PaperProvider>
   );
 }
